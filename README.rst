@@ -64,7 +64,7 @@
 
 .. code-block:: console
 
-   $ pip install -e git+https://github.com/HDScorpio/async-wrap-sync
+   $ pip install git+https://github.com/HDScorpio/async-wrap-sync
 
 
 Использование
@@ -74,6 +74,6 @@
 
 - ``aws-server`` - асинхронный HTTP сервер на базе ``aiohttp``
 - ``aws-client`` - многопоточный HTTP клиент на базе ``requests``
-- ``aws-test`` - запуск сервера и клиента с базовыми параметрами
+- ``aws-test`` - запуск локального сервера и клиента с базовыми параметрами
 
-Доступные опции сервера и клиента можно посмотреть с помощью опции ``-h/--help``.
+Доступные параметры можно посмотреть с помощью опции ``-h/--help``.

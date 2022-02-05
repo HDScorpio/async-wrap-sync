@@ -62,24 +62,29 @@ def test():
     """
     Тестовый запуск локального сервера и клиента с фиксированными параметрами.
     """
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-p', '--port', type=int, default=8080,
+                        help='port number, default is 8080')
+    args = parser.parse_args()
+
     workers = 3
     tasks = 100
-    print('Test run: url=%s' % DEFAULT_URL)
-
-    ip, port = parse_url(DEFAULT_URL)
+    ip = '127.0.0.1'
+    url = 'http://%s:%d' % (ip, args.port)
+    print('Test run: url=%s' % url)
 
     # Запуск сервера в отдельном процессе
-    server_p = Process(target=run_server, args=(ip, port), daemon=True)
+    server_p = Process(target=run_server, args=(ip, args.port), daemon=True)
     server_p.start()
     time.sleep(0.1)
     print()
 
-    run_client(workers, tasks, DEFAULT_URL)
+    run_client(workers, tasks, url)
     print()
 
     # останавливаем сервер, отправляя запрос
     try:
-        requests.delete(DEFAULT_URL)
+        requests.delete(url)
     except:
         # игнорируем любые ошибки
         pass
